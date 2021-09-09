@@ -3,8 +3,7 @@ import { connectToDatabase } from "../components/mongodb";
 export default async (req, res) => {
   const { method, query } = req;
 
-  console.log(method);
-  console.log(req.body);
+  const id = query.id;
 
   const { db } = await connectToDatabase();
   if (method === "GET") {

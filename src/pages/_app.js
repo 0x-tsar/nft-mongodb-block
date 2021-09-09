@@ -13,7 +13,7 @@ export const Container = styled.div`
   grid-template-areas:
     "header header header"
     "left middle right";
-  background-color: blue;
+  /* background-color: blue; */
 
   /* @media only screen and (max-width: 720px) {
     grid-template-areas:

@@ -26,7 +26,7 @@ const Right = ({ data }) => {
       {data.map((item, key) => {
         if (key > 0) {
           return (
-            <Container style={{ marginTop: 50 }}>
+            <Container key={key} style={{ marginTop: 50 }}>
               <div style={{ marginLeft: "10px" }}>
                 <div>Item: {item.item}</div>
                 <div>Price: {item.price}</div>
@@ -36,7 +36,10 @@ const Right = ({ data }) => {
           );
         } else {
           return (
-            <Container style={{ marginTop: 10, backgroundColor: "purple" }}>
+            <Container
+              key={key}
+              style={{ marginTop: 10, backgroundColor: "purple" }}
+            >
               <div style={{ marginLeft: "10px" }}>
                 <div>Item: {item.item}</div>
                 <div>Price: {item.price}</div>

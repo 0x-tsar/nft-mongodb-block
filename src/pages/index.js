@@ -36,7 +36,6 @@ export function Home({ data }) {
     });
   }, []);
 
-  console.log(data);
   return (
     <>
       <Head>
