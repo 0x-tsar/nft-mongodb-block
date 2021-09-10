@@ -95,7 +95,6 @@ const Middle = ({ cards }) => {
       <img src={card1}></img>
     </div>
   );
-  // console.log(msg.props.children);
 
   useEffect(() => {
     // window.addEventListener("mousemove", (event) => {
@@ -118,9 +117,7 @@ const Middle = ({ cards }) => {
             ref.current.style.display = "none";
           }}
           onMouseMove={(e) => {
-            console.log(msg.props.children);
             //  ref.current.h =  <div dangerouslySetInnerHTML={{ __html: var1 }}>
-            ref.current.innerHTML = msg.props.children;
             // ref.current.html = `<div style={{"color",eee "red"}}>
             // ref.current.html = `<div style={{"color",eee "red"}}>
             // Luciano Hat Trick <br> São Paulo x Flamengo

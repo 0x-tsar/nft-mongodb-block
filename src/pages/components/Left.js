@@ -86,6 +86,23 @@ export const HTeams = styled.div`
   flex-wrap: wrap;
 `;
 
+export const ButtonCreate = styled.button`
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
+
+  border: none;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  margin: 10px 100px;
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(0, 0, 0);
+  }
+`;
+
 const Left = () => {
   const [whichCategory, setWhichCategory] = useState("Série A");
 
@@ -101,6 +118,16 @@ const Left = () => {
       <Menu>Início</Menu>
       <Menu>Trocar</Menu>
       <Menu>Moeda</Menu>
+
+      {/* <div style={{ justifyContent: "center" }}> */}
+      <ButtonCreate
+        onClick={() => {
+          console.log("click");
+        }}
+      >
+        Create Card
+      </ButtonCreate>
+      {/* </div> */}
 
       <HolderTeams>
         <MenuTeams>
