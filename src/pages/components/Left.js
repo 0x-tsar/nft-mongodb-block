@@ -115,6 +115,9 @@ const Left = () => {
       <Link href={`/`}>
         <Menu style={{ fontWeight: "bolder" }}>Meus Items</Menu>
       </Link>
+      <Link href={`/market`}>
+        <Menu>Mercado</Menu>
+      </Link>
       <Menu>Início</Menu>
       <Menu>Trocar</Menu>
       <Menu>Moeda</Menu>
