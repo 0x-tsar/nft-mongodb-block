@@ -9,12 +9,12 @@ const getBlockchain = () =>
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
 
-        // const nft = new Contract(
-        //   Cards.networks[window.ethereum.networkVersion].address,
-        //   Cards.abi,
-        //   signer
-        // );
-        // resolve({ nft });
+        const nft = new Contract(
+          Cards.networks[window.ethereum.networkVersion].address,
+          Cards.abi,
+          signer
+        );
+        resolve({ nft, hello: "hello!!" });
       }
       resolve({ nft: undefined });
     });

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import getBlockchain from "../ethereum.js";
+import { AuthContext } from "../providers/context.js";
 
 export const Container = styled.div`
   width: 300px;
@@ -25,6 +26,10 @@ export const MinStyle = styled.div`
 `;
 
 const create_card = () => {
+  const { token, setToken } = useContext(AuthContext);
+
+  // console.log(token);
+
   const [form, setForm] = useState({
     name: "",
     imageUrl: "",
@@ -35,30 +40,39 @@ const create_card = () => {
     team: "",
     amountMinted: "",
     price: "",
+    token: undefined,
   });
 
-  const [data, setData] = useState([]);
-  const [token, setToken] = useState();
-  const [account, setAccount] = useState("");
-  const [info, setInfo] = useState([]);
+  // const [token, setToken] = useState(null);
+  const [test, setTest] = useState("");
+  // const [account, setAccount] = useState("");
+  // const [info, setInfo] = useState([]);
 
   useEffect(() => {
+    // const teste = async () => {
+    //   // console.log("teste..");
+    //   setTest("should see this!");
+    // };
+
+    // teste();
+
     const init = async () => {
-      const { nft } = await getBlockchain();
+      const { nft, hello } = await getBlockchain();
       console.log("called");
-      // setToken(nft);
+      setToken(nft);
+      setForm({ ...form, token: nft });
+
+      setTest("okok");
+
       // const balance = await nft.balanceOf(
       //   nft.provider.provider.selectedAddress
       // );
       // console.log(`balance ${balance}`);
       // setAccount(nft.provider.provider.selectedAddress);
       // console.log(nft);
-
       // const acc = nft.provider.provider.selectedAddress;
-
       // for (let i = 0; i < balance; i++) {
       //   const tokenId = await nft.tokenOfOwnerByIndex(acc, i);
-
       //   const item = await nft.getNfts(acc, parseInt(tokenId));
       //   // let date = new Date(Number(item.date) * 1000);
       //   const obj = {
@@ -74,7 +88,11 @@ const create_card = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    console.log(token);
+    // console.log(form);
+    // console.log(test);
+    // console.log(form.token);
+    // console.log(test);
   };
 
   return (
