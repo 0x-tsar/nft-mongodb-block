@@ -39,27 +39,27 @@ contract Cards is ERC721Enumerable{
     mapping(uint => Card) market;
 //     // mapping(address => mapping(string=>bool)) public adminsForClub;
 
-    // function getyMyCards(uint256 i)
-    //     external
-    //     view
-    //     returns (Card memory)
-    // {
-    //     return myRepository[msg.sender][i];
-    // }
+    function getyMyCards(uint256 i)
+        external
+        view
+        returns (Card memory)
+    {
+        return myRepository[msg.sender][i];
+    }
 
-//     function getCardMarket(uint256 i) external view returns (Card memory) {
-//         return market[i];
-//     }
+    function getCardMarket(uint256 i) external view returns (Card memory) {
+        return market[i];
+    }
 
-//     function allowAdmin(address addr) external {
-//       require(msg.sender == admin, 'only admin');
-//       admins[addr] = true;
-//     }
+    function allowAdmin(address addr) external {
+      require(msg.sender == admin, 'only admin');
+      admins[addr] = true;
+    }
 
-//     function removeAdmin(address addr) external{
-//       require(msg.sender == admin, 'only admin');
-//       admins[addr] = false;
-//     }
+    function removeAdmin(address addr) external{
+      require(msg.sender == admin, 'only admin');
+      admins[addr] = false;
+    }
     
 
   function mint(
@@ -68,7 +68,6 @@ contract Cards is ERC721Enumerable{
         string memory imageUrl,
         Rareness rareness,
         string memory description,
-        bool isForSelling,
         string memory nationality,
         string memory league,
         string memory team,
@@ -86,8 +85,7 @@ contract Cards is ERC721Enumerable{
             date: block.timestamp,
             description: description,
             rareness: rareness,
-            isForSelling: isForSelling,
-
+            isForSelling: true,
             nationality: nationality,
             league: league,
             team: team,
@@ -95,14 +93,13 @@ contract Cards is ERC721Enumerable{
             price: price
         });
 
-    
-
-        myRepository[msg.sender][nextTokenId] = card;
+        myRepository[address(this)][nextTokenId] = card;
         market[nextTokenId] = card;
         nextTokenId++;
 
         return card;
     }
+
 
 
 //     function setCardForSelling(uint cardId) external {

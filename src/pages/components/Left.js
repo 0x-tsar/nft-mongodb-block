@@ -123,14 +123,15 @@ const Left = () => {
       <Menu>Moeda</Menu>
 
       {/* <div style={{ justifyContent: "center" }}> */}
-      <ButtonCreate
-        onClick={() => {
-          console.log("click");
-        }}
-      >
-        Create Card
-      </ButtonCreate>
-      {/* </div> */}
+      <Link href="/create_card">
+        <ButtonCreate
+          onClick={() => {
+            console.log("click");
+          }}
+        >
+          Create Card
+        </ButtonCreate>
+      </Link>
 
       <HolderTeams>
         <MenuTeams>
