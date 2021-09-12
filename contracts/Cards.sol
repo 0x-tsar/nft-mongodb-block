@@ -58,7 +58,7 @@ contract Cards is ERC721Enumerable{
         Card memory card = Card({
             owner: address(this),
             name: "Botafogo x Sao Paulo",
-            urlPic: "../../public/card2",
+            urlPic: "../card2.png",
             // date: block.timestamp,
             description: "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017"
             // rareness: Rareness.Festive
