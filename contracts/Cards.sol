@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.7.0 <0.9.0;
 
+// import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
@@ -8,7 +9,7 @@ contract Cards is ERC721Enumerable{
     uint256 public nextTokenId;
     address public admin;
 
-    constructor() ERC721("Cards", "CRD"){
+    constructor() ERC721("Pixel Art", "PAR") {
         admin = msg.sender;
     }
 
@@ -19,114 +20,63 @@ contract Cards is ERC721Enumerable{
         Relic
     }
 
-    struct Card {
-        address owner;
-        string name;
-        string urlPic;
-        uint256 date;
-        string description;
-        Rareness rareness;
-        bool isForSelling;
-        string nationality;
-        string league;
-        string team;
-        uint amountMinted;
-        uint price;
-    }
+  struct Card {
+    address owner;
+    string name;
+    string urlPic;
+    // uint256 date;
+    string description;
+    // Rareness rareness;
+    // bool isForSelling;
+    // string nationality;
+    // string league;
+    // string team;
+    // uint256 amountMinted;
+    // uint256 price;
+  }
+
 
     mapping(address => bool) public admins;
-    mapping(address => mapping(uint=>Card)) public myRepository;
-    mapping(uint => Card) market;
-//     // mapping(address => mapping(string=>bool)) public adminsForClub;
+    mapping(address => mapping(uint256 => Card)) public myRepository;
+    mapping(uint256 => Card) market;
 
-    function getyMyCards(uint256 i)
-        external
-        view
-        returns (Card memory)
-    {
+    event evento( string );
+
+    function getyMyCards(uint256 i) external view returns (Card memory) {
         return myRepository[msg.sender][i];
     }
 
     function getCardMarket(uint256 i) external view returns (Card memory) {
         return market[i];
     }
-
-    function allowAdmin(address addr) external {
-      require(msg.sender == admin, 'only admin');
-      admins[addr] = true;
-    }
-
-    function removeAdmin(address addr) external{
-      require(msg.sender == admin, 'only admin');
-      admins[addr] = false;
-    }
     
-
-  function mint(
-        address to,
-        string memory name,
-        string memory imageUrl,
-        Rareness rareness,
-        string memory description,
-        string memory nationality,
-        string memory league,
-        string memory team,
-        uint amountMinted,
-        uint price
-
-    ) external  returns(Card memory){
-        require(msg.sender == admin || admins[msg.sender], "only admin");
-        _safeMint(to, nextTokenId);
+    function mint() external  {
+        // _safeMint(address(this), nextTokenId);
+        //safeMint is not working, fix it later?
+        _mint(address(this), nextTokenId);
 
         Card memory card = Card({
-            owner: address(this), 
-            name: name,
-            urlPic: imageUrl,
-            date: block.timestamp,
-            description: description,
-            rareness: rareness,
-            isForSelling: true,
-            nationality: nationality,
-            league: league,
-            team: team,
-            amountMinted: amountMinted,
-            price: price
+            owner: address(this),
+            name: "Botafogo x Sao Paulo",
+            urlPic: "../../public/card2",
+            // date: block.timestamp,
+            description: "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017"
+            // rareness: Rareness.Festive
+            // isForSelling: true,
+            // nationality: nationality,
+            // league: league,
+            // team: team,
+            // amountMinted: amountMinted,
+            // price: price
         });
-
+        
         myRepository[address(this)][nextTokenId] = card;
         market[nextTokenId] = card;
         nextTokenId++;
+        emit evento("evento criado");
+     }
 
-        return card;
-    }
-
-
-
-//     function setCardForSelling(uint cardId) external {
-//         //check if owns card, 
-//         //check if quantity is >= 1
-//         //check if is selling
-//         require(market[cardId].owner == msg.sender, "you are not the owner of this card");
-//         require(myRepository[msg.sender][cardId].isForSelling, 'Card is already for selling!');
-//         require(!myRepository[msg.sender][cardId].isForSelling, 'Card is already for selling!');
-
-//     }
-
-
-
-
-
-
-
-
-// function _baseURI() internal pure override returns (string memory) {
-//     return "";
-// }
-
-
-
-
-
-
-
+    // function _baseURI() internal pure override returns (string memory) {
+    //     return "";
+    // }
 }

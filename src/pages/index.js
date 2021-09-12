@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 import { connectToDatabase } from "./components/mongodb";
 import axios from "axios";
@@ -7,8 +7,10 @@ import Right from "./components/Right";
 // import Left from "./components/Left";
 import Middle from "./components/Middle";
 // import Header from "./components/Header";
+import getBlockchain from "../ethereum.js";
 
 import styled from "styled-components";
+import { AuthContext } from "../providers/context";
 
 const sendData = async () => {
   const data = await axios
@@ -27,7 +29,18 @@ const sendData = async () => {
 };
 
 export function Home({ data }) {
+  const { token, setToken } = useContext(AuthContext);
+
+  console.log(token);
+
   useEffect(() => {
+    const init = async () => {
+      const { nft } = await getBlockchain();
+      setToken(nft);
+    };
+
+    init();
+
     window.addEventListener("keyup", (key) => {
       if (key.key === "Enter") {
         console.log("ca na marche pas pour l`instante");

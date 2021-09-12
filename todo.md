@@ -8,3 +8,7 @@ admin controls:
 -create master admin for each club who can create new admins
 -create amount of cards
 -set price
+
+
+problems
+safeMint is not working, fix it later?

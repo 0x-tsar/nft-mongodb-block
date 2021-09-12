@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import card1 from "./card1.png";
-import card2 from "./card2.png";
-import card3 from "./card3.png";
+import card1 from "../../../public/card1.png";
+import card2 from "../../../public/card2.png";
+import card3 from "../../../public/card3.png";
 
 import spfc from "./teams/spfc.png";
 import atl from "./teams/atl.png";

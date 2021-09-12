@@ -1,9 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import getBlockchain from "../ethereum";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
-  // const [contexto, setContexto] = useState({ token: undefined });
   const [token, setToken] = useState(undefined);
 
   return (

@@ -49,20 +49,11 @@ const create_card = () => {
   // const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    // const teste = async () => {
-    //   // console.log("teste..");
-    //   setTest("should see this!");
-    // };
-
-    // teste();
-
     const init = async () => {
-      const { nft, hello } = await getBlockchain();
+      const { nft } = await getBlockchain();
       console.log("called");
       setToken(nft);
       setForm({ ...form, token: nft });
-
-      setTest("okok");
 
       // const balance = await nft.balanceOf(
       //   nft.provider.provider.selectedAddress

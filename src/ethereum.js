@@ -14,7 +14,7 @@ const getBlockchain = () =>
           Cards.abi,
           signer
         );
-        resolve({ nft, hello: "hello!!" });
+        resolve({ nft });
       }
       resolve({ nft: undefined });
     });
