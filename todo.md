@@ -12,3 +12,4 @@ admin controls:
 
 problems
 safeMint is not working, fix it later?
+read context in the main file?

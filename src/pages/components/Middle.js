@@ -62,7 +62,6 @@ export const Img = styled.img`
 `;
 
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
-
 export const LittleWindow = styled.div`
   width: 200px;
   /* height: 120px; */

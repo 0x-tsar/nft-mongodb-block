@@ -29,7 +29,7 @@ const sendData = async () => {
 };
 
 export function Home({ data }) {
-  const { token, setToken } = useContext(AuthContext);
+  const { token, setToken, info, setInfo } = useContext(AuthContext);
 
   console.log(token);
 
@@ -37,6 +37,26 @@ export function Home({ data }) {
     const init = async () => {
       const { nft } = await getBlockchain();
       setToken(nft);
+
+      const contract_address = nft.address;
+      console.log(nft.provider.provider.selectedAddress);
+
+      const balance = await nft.balanceOf(contract_address);
+      console.log(parseInt(balance));
+
+      for (let i = 0; i < balance; i++) {
+        const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
+        const item = await nft.getCardMarket(parseInt(tokenId));
+        console.log(item);
+
+        const obj = {
+          description: item.description,
+          name: item.name,
+          image: item.urlPic,
+          owner: item.owner,
+        };
+        setInfo((info) => [...info, obj]);
+      }
     };
 
     init();
