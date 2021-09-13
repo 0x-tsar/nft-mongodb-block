@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import card1 from "../../../public/card1.png";
-import card2 from "../../../public/card2.png";
-import card3 from "../../../public/card3.png";
+// import card1 from "../../../public/card1.png";
+// import card2 from "../../../public/card2.png";
+// import card3 from "../../../public/card3.png";
+
+import CustomCard from "./CustomCard";
 
 import spfc from "./teams/spfc.png";
 import atl from "./teams/atl.png";
@@ -21,24 +23,6 @@ export const MiddleComponent = styled.div`
   color: rgb(122, 110, 170);
 `;
 
-const randomBorder = () => {
-  const colors = ["purple", "yellow", "red", "blue", "cyan"];
-  const r = Math.floor(Math.random() * colors.length);
-  return `10px solid ${colors[r]}`;
-};
-
-export const ImageHolder = styled.div`
-  width: 200px;
-  height: 300px;
-  background-color: #000000;
-  grid-area: middle;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  margin: 10px;
-  border-radius: 10px;
-`;
-
 export const Panel = styled.div`
   width: 500px;
   height: 370px;
@@ -51,49 +35,18 @@ export const Panel = styled.div`
   align-items: center;
 `;
 
-export const Img = styled.img`
-  transform: scale(1);
-  transition-duration: 5s;
-
-  :hover {
-    transform: scale(1.1) rotate(1deg);
-    cursor: pointer;
-  }
-`;
-
-// MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
-export const LittleWindow = styled.div`
-  width: 200px;
-  /* height: 120px; */
-  /* height: 300; */
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  border: 2px solid rgb(0, 0, 0, 0.2);
-  z-index: 999;
-  position: absolute;
-  /* left: 100px;
-  top: 100px; */
-  color: black;
-  cursor: default;
-  pointer-events: none;
-  padding: 5px;
-  display: none;
-
-  justify-content: center;
-`;
-
 const Middle = ({ cards }) => {
   const ref = useRef();
   // const [msg, setMsg] = useState(<div>qqq</div>);
 
-  const msg = (
-    <div style={{ color: purple }}>
-      <div>Teste1</div>
-      <div>Teste2</div>
-      <div>Teste3</div>
-      <img src={card1}></img>
-    </div>
-  );
+  // const msg = (
+  //   <div style={{ color: purple }}>
+  //     <div>Teste1</div>
+  //     <div>Teste2</div>
+  //     <div>Teste3</div>
+  //     <img src={card1}></img>
+  // </div>
+  // );
 
   useEffect(() => {
     // window.addEventListener("mousemove", (event) => {
@@ -108,27 +61,13 @@ const Middle = ({ cards }) => {
   // );
   return (
     <MiddleComponent>
-      <LittleWindow ref={ref}>Hello there</LittleWindow>
-      <ImageHolder style={{ borderBottom: randomBorder() }}>
-        <Img
-          src={card1.src}
-          onMouseLeave={(e) => {
-            ref.current.style.display = "none";
-          }}
-          onMouseMove={(e) => {
-            //  ref.current.h =  <div dangerouslySetInnerHTML={{ __html: var1 }}>
-            // ref.current.html = `<div style={{"color",eee "red"}}>
-            // ref.current.html = `<div style={{"color",eee "red"}}>
-            // Luciano Hat Trick <br> São Paulo x Flamengo
-            // <div>`;
-            ref.current.style.display = "flex";
-            ref.current.style.left = `${e.pageX + 10}px`;
-            ref.current.style.top = `${e.pageY + 10}px`;
-          }}
-        ></Img>
-      </ImageHolder>
-
-      <ImageHolder style={{ borderBottom: randomBorder() }}>
+      <CustomCard
+        data={[
+          { name: "11", imageUrl: 1 },
+          { name: "222", imageUrl: 2 },
+        ]}
+      ></CustomCard>
+      {/* <ImageHolder style={{ borderBottom: randomBorder() }}>
         <Img
           src={card2.src}
           onMouseLeave={(e) => {
@@ -157,7 +96,7 @@ const Middle = ({ cards }) => {
             ref.current.style.top = `${e.pageY + 10}px`;
           }}
         ></Img>{" "}
-      </ImageHolder>
+      </ImageHolder> */}
     </MiddleComponent>
   );
 };
