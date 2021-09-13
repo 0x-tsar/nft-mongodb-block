@@ -1,10 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
 import getBlockchain from "../ethereum";
 import { AuthContext } from "../providers/context";
+import CustomCard from "./components/CustomCard";
 import { card1 } from "/public/card3.png";
+import styled from "styled-components";
+
+const cor = "rgb(230,230,230)";
+
+export const MiddleComponent = styled.div`
+  background-color: ${cor};
+  grid-area: middle;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Kanit", sans-serif;
+  color: rgb(122, 110, 170);
+`;
 
 const market = () => {
   const { token, setToken, info, setInfo } = useContext(AuthContext);
+
+  const [dados, setDados] = useState([
+    { name: "um", imageUrl: 1 },
+    { name: "um", imageUrl: 1 },
+    { name: "um", imageUrl: 2 },
+    { name: "um", imageUrl: 2 },
+    { name: "second to last", imageUrl: 2 },
+    { name: "last", imageUrl: 2 },
+  ]);
 
   console.log(token);
 
@@ -19,9 +41,6 @@ const market = () => {
 
       const balance = await nft.balanceOf(contract_address);
       console.log(parseInt(balance));
-
-      // const balance = await nft.balanceOf(contract_address);
-      // console.log(`balance market: ${parseInt(balance)}`);
 
       for (let i = 0; i < balance; i++) {
         const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
@@ -44,8 +63,9 @@ const market = () => {
   }, []);
 
   return (
-    <div>
-      {info.map((item, key) => {
+    <MiddleComponent>
+      <CustomCard data={dados}></CustomCard>
+      {/* {info.map((item, key) => {
         console.log(item.image);
         return (
           <div key={key}>
@@ -57,8 +77,8 @@ const market = () => {
             <div>{item.owner}</div>
           </div>
         );
-      })}
-    </div>
+      })} */}
+    </MiddleComponent>
   );
 };
 

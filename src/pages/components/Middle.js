@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 // import card1 from "../../../public/card1.png";
 // import card2 from "../../../public/card2.png";
 // import card3 from "../../../public/card3.png";
-
 import CustomCard from "./CustomCard";
-
 import spfc from "./teams/spfc.png";
 import atl from "./teams/atl.png";
 
-// import { card1 } from "../../../public/card1.png";
 import { useState, useEffect, useRef } from "react";
 import { purple, red } from "@material-ui/core/colors";
+import { AuthContext } from "../../providers/context";
 const cor = "rgb(230,230,230)";
 
 export const MiddleComponent = styled.div`
@@ -37,28 +35,13 @@ export const Panel = styled.div`
 
 const Middle = ({ cards }) => {
   const ref = useRef();
-  // const [msg, setMsg] = useState(<div>qqq</div>);
-
-  // const msg = (
-  //   <div style={{ color: purple }}>
-  //     <div>Teste1</div>
-  //     <div>Teste2</div>
-  //     <div>Teste3</div>
-  //     <img src={card1}></img>
-  // </div>
-  // );
+  const { token, setToken, info, setInfo } = useContext(AuthContext);
+  // console.log(info[0]);
 
   useEffect(() => {
-    // window.addEventListener("mousemove", (event) => {
-    //   console.log(Img);
-    //   // console.log(event);
-    // });
+    // console.log(info);
   }, []);
 
-  // console.log(
-  //   Object(<div dangerouslySetInnerHTML={{ __html: "var1" }}></div>).props
-  //     .dangerouslySetInnerHTML.__html
-  // );
   return (
     <MiddleComponent>
       <CustomCard

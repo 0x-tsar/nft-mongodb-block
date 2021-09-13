@@ -20,18 +20,18 @@ const sendData = async () => {
       quantity: 334,
     })
     .then((arg) => {
-      console.log("it worked!");
-      console.log(arg);
+      // console.log("it worked!");
+      // console.log(arg);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 };
 
 export function Home({ data }) {
   const { token, setToken, info, setInfo } = useContext(AuthContext);
 
-  console.log(token);
+  // console.log(token);
 
   useEffect(() => {
     const init = async () => {
@@ -39,15 +39,15 @@ export function Home({ data }) {
       setToken(nft);
 
       const contract_address = nft.address;
-      console.log(nft.provider.provider.selectedAddress);
+      // console.log(nft.provider.provider.selectedAddress);
 
       const balance = await nft.balanceOf(contract_address);
-      console.log(parseInt(balance));
+      // console.log(parseInt(balance));
 
       for (let i = 0; i < balance; i++) {
         const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
         const item = await nft.getCardMarket(parseInt(tokenId));
-        console.log(item);
+        // console.log(item);
 
         const obj = {
           description: item.description,
