@@ -19,14 +19,15 @@ export const MiddleComponent = styled.div`
 const market = () => {
   const { token, setToken, info, setInfo } = useContext(AuthContext);
 
-  const [dados, setDados] = useState([
-    { name: "um", imageUrl: 1 },
-    { name: "um", imageUrl: 1 },
-    { name: "um", imageUrl: 2 },
-    { name: "um", imageUrl: 2 },
-    { name: "second to last", imageUrl: 2 },
-    { name: "last", imageUrl: 2 },
-  ]);
+  console.log(info);
+  // const [dados, setDados] = useState([
+  //   { name: "um", imageUrl: 1 },
+  //   { name: "um", imageUrl: 1 },
+  //   { name: "um", imageUrl: 2 },
+  //   { name: "um", imageUrl: 2 },
+  //   { name: "second to last", imageUrl: 2 },
+  //   { name: "last", imageUrl: 2 },
+  // ]);
 
   console.log(token);
 
@@ -64,7 +65,7 @@ const market = () => {
 
   return (
     <MiddleComponent>
-      <CustomCard data={dados}></CustomCard>
+      <CustomCard data={info}></CustomCard>
       {/* {info.map((item, key) => {
         console.log(item.image);
         return (

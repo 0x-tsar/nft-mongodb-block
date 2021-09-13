@@ -89,7 +89,7 @@ const CustomCard = ({ data }) => {
               // setDesc(e.currentTarget.textContent)
             }}
           >
-            <LittleWindow ref={ref} value={item.name}>
+            <LittleWindow ref={ref} value={item.description}>
               {desc}
             </LittleWindow>
             <Img src={item.imageUrl === 1 ? card1.src : card2.src}></Img>
