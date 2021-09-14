@@ -19,17 +19,6 @@ export const MiddleComponent = styled.div`
 const market = () => {
   const { token, setToken, info, setInfo } = useContext(AuthContext);
 
-  // const [dados, setDados] = useState([
-  //   { name: "um", imageUrl: 1 },
-  //   { name: "um", imageUrl: 1 },
-  //   { name: "um", imageUrl: 2 },
-  //   { name: "um", imageUrl: 2 },
-  //   { name: "second to last", imageUrl: 2 },
-  //   { name: "last", imageUrl: 2 },
-  // ]);
-
-  console.log(token);
-
   useEffect(() => {
     const init = async () => {
       const { nft } = await getBlockchain();
@@ -46,6 +35,9 @@ const market = () => {
         const item = await nft.getCardMarket(parseInt(tokenId));
 
         let date = new Date(Number(item.date) * 1000);
+
+        console.log("-------");
+        console.log(item);
 
         const obj = {
           amountMinted: parseInt(item.amountMinted),

@@ -36,7 +36,7 @@ export const Img = styled.img`
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
 export const LittleWindow = styled.div`
   width: 200px;
-  height: 300px;
+  height: 400px;
   /* height: 300; */
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -67,6 +67,10 @@ const CustomCard = ({ data }) => {
     team: "",
     owner: "",
     price: "",
+    rareness: "",
+    tokenid: 0,
+    amountminted: "",
+    isforselling: "",
   });
 
   useEffect(() => {
@@ -97,7 +101,9 @@ const CustomCard = ({ data }) => {
             onMouseEnter={(e) => {
               // console.log(e.currentTarget.children[0].children[0].attributes);
               // console.log(e.currentTarget.children[0].children[0].attributes);
-              setDesc(e.currentTarget.children[0].attributes[0].value);
+              // setDesc(e.currentTarget.children[0].attributes[0].value);
+
+              // console.log(e.currentTarget.children[0].children[0].attributes);
 
               setDados({
                 name: e.currentTarget.children[0].children[0].attributes.name
@@ -116,6 +122,17 @@ const CustomCard = ({ data }) => {
                 price:
                   e.currentTarget.children[0].children[0].attributes.price
                     .value,
+                amountMinted:
+                  e.currentTarget.children[0].children[0].attributes.amountMinted.value.toString(),
+                tokenId:
+                  e.currentTarget.children[0].children[0].attributes.tokenId
+                    .value,
+                rareness:
+                  e.currentTarget.children[0].children[0].attributes.rareness
+                    .value,
+                isForSelling:
+                  e.currentTarget.children[0].children[0].attributes
+                    .isForSelling.value,
                 // setDesc(e.currentTarget.textContent)
               });
             }}
@@ -131,6 +148,10 @@ const CustomCard = ({ data }) => {
                 team={item.team}
                 owner={item.owner}
                 price={item.price}
+                rareness={item.rareness}
+                tokenid={parseInt(item.tokenId)}
+                amountminted={item.amountMinted}
+                isforselling={item.isForSelling.toString()}
               ></div>
               <div>{dados.name}</div>
               <div>{dados.description}</div>
@@ -138,6 +159,10 @@ const CustomCard = ({ data }) => {
               <div>{dados.team}</div>
               <div>{dados.owner}</div>
               <div>{dados.price}</div>
+              <div>tokenId: {dados.tokenId}</div>
+              <div>is for selling? {dados.isForSelling}</div>
+              <div>Rareness: {dados.rareness}</div>
+              <div>amounts minted: {dados.amountMinted}</div>
             </LittleWindow>
             <Img src={item.imageUrl === 1 ? card1.src : card2.src}></Img>
           </ImageHolder>
