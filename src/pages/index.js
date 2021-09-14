@@ -34,32 +34,32 @@ export function Home({ data }) {
   // console.log(token);
 
   useEffect(() => {
-    const init = async () => {
-      const { nft } = await getBlockchain();
-      setToken(nft);
+    // const init = async () => {
+    //   const { nft } = await getBlockchain();
+    //   setToken(nft);
 
-      const contract_address = nft.address;
-      // console.log(nft.provider.provider.selectedAddress);
+    //   const contract_address = nft.address;
+    //   // console.log(nft.provider.provider.selectedAddress);
 
-      const balance = await nft.balanceOf(contract_address);
-      // console.log(parseInt(balance));
+    //   const balance = await nft.balanceOf(contract_address);
+    //   // console.log(parseInt(balance));
 
-      for (let i = 0; i < balance; i++) {
-        const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
-        const item = await nft.getCardMarket(parseInt(tokenId));
-        // console.log(item);
+    //   for (let i = 0; i < balance; i++) {
+    //     const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
+    //     const item = await nft.getCardMarket(parseInt(tokenId));
+    //     // console.log(item);
 
-        const obj = {
-          description: item.description,
-          name: item.name,
-          image: item.urlPic,
-          owner: item.owner,
-        };
-        setInfo((info) => [...info, obj]);
-      }
-    };
+    //     const obj = {
+    //       description: item.description,
+    //       name: item.name,
+    //       image: item.urlPic,
+    //       owner: item.owner,
+    //     };
+    //     setInfo((info) => [...info, obj]);
+    //   }
+    // };
 
-    init();
+    // init();
 
     window.addEventListener("keyup", (key) => {
       if (key.key === "Enter") {

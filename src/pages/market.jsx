@@ -4,6 +4,7 @@ import { AuthContext } from "../providers/context";
 import CustomCard from "./components/CustomCard";
 import { card1 } from "/public/card3.png";
 import styled from "styled-components";
+import FetchItems from "./components/FetchItems";
 
 const cor = "rgb(230,230,230)";
 
@@ -19,48 +20,13 @@ export const MiddleComponent = styled.div`
 const market = () => {
   const { token, setToken, info, setInfo } = useContext(AuthContext);
 
-  useEffect(() => {
-    const init = async () => {
-      const { nft } = await getBlockchain();
-      setToken(nft);
+  FetchItems();
 
-      const contract_address = nft.address;
-      console.log(nft.provider.provider.selectedAddress);
+  // useEffect(() => {
+  //   const init = async () => {};
 
-      const balance = await nft.balanceOf(contract_address);
-      console.log(parseInt(balance));
-
-      for (let i = 0; i < balance; i++) {
-        const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
-        const item = await nft.getCardMarket(parseInt(tokenId));
-
-        let date = new Date(Number(item.date) * 1000);
-
-        console.log("-------");
-        console.log(item);
-
-        const obj = {
-          amountMinted: parseInt(item.amountMinted),
-          date: date,
-          isForSelling: item.isForSelling,
-          description: item.description,
-          name: item.name,
-          nationality: item.nationality,
-          owner: item.owner,
-          price: parseInt(item.price),
-          team: item.team,
-          tokenId: item.tokenId,
-          rareness: item.rareness,
-          image: item.urlPic,
-          owner: item.owner,
-        };
-
-        setInfo((info) => [...info, obj]);
-      }
-    };
-
-    init();
-  }, []);
+  //   init();
+  // }, []);
 
   return (
     <MiddleComponent>

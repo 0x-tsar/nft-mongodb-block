@@ -123,16 +123,17 @@ const CustomCard = ({ data }) => {
                   e.currentTarget.children[0].children[0].attributes.price
                     .value,
                 amountMinted:
-                  e.currentTarget.children[0].children[0].attributes.amountMinted.value.toString(),
+                  e.currentTarget.children[0].children[0].attributes
+                    .amountMinted.value,
                 tokenId:
                   e.currentTarget.children[0].children[0].attributes.tokenId
                     .value,
                 rareness:
                   e.currentTarget.children[0].children[0].attributes.rareness
                     .value,
-                isForSelling:
-                  e.currentTarget.children[0].children[0].attributes
-                    .isForSelling.value,
+                // isForSelling:
+                //   e.currentTarget.children[0].children[0].attributes
+                //     .isForSelling.value,
                 // setDesc(e.currentTarget.textContent)
               });
             }}
@@ -151,7 +152,7 @@ const CustomCard = ({ data }) => {
                 rareness={item.rareness}
                 tokenid={parseInt(item.tokenId)}
                 amountminted={item.amountMinted}
-                isforselling={item.isForSelling.toString()}
+                // isforselling={item.isForSelling}
               ></div>
               <div>{dados.name}</div>
               <div>{dados.description}</div>
@@ -160,7 +161,7 @@ const CustomCard = ({ data }) => {
               <div>{dados.owner}</div>
               <div>{dados.price}</div>
               <div>tokenId: {dados.tokenId}</div>
-              <div>is for selling? {dados.isForSelling}</div>
+              {/* <div>is for selling? {dados.isForSelling}</div> */}
               <div>Rareness: {dados.rareness}</div>
               <div>amounts minted: {dados.amountMinted}</div>
             </LittleWindow>

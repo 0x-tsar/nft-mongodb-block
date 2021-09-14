@@ -10,6 +10,9 @@ import atl from "./teams/atl.png";
 import { useState, useEffect, useRef } from "react";
 import { purple, red } from "@material-ui/core/colors";
 import { AuthContext } from "../../providers/context";
+
+import FetchItems from "./FetchItems";
+
 const cor = "rgb(230,230,230)";
 
 export const MiddleComponent = styled.div`
@@ -35,8 +38,11 @@ export const Panel = styled.div`
 
 const Middle = ({ cards }) => {
   const ref = useRef();
-  const { token, setToken, info, setInfo } = useContext(AuthContext);
+  const { token, setToken, info, setInfo, myCards, setMyCards } =
+    useContext(AuthContext);
   // console.log(info[0]);
+
+  FetchItems();
 
   useEffect(() => {
     // console.log(info);
@@ -44,12 +50,7 @@ const Middle = ({ cards }) => {
 
   return (
     <MiddleComponent>
-      <CustomCard
-        data={[
-          { name: "11", imageUrl: 1 },
-          { name: "222", imageUrl: 2 },
-        ]}
-      ></CustomCard>
+      <CustomCard data={myCards}></CustomCard>
       {/* <ImageHolder style={{ borderBottom: randomBorder() }}>
         <Img
           src={card2.src}
