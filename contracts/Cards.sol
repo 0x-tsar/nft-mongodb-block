@@ -24,56 +24,92 @@ contract Cards is ERC721Enumerable{
     address owner;
     string name;
     string urlPic;
-    // uint256 date;
+    uint256 date;
     string description;
-    // Rareness rareness;
-    // bool isForSelling;
-    // string nationality;
+    Rareness rareness;
+    bool isForSelling;
+    string nationality;
     // string league;
-    // string team;
-    // uint256 amountMinted;
-    // uint256 price;
+    string team;
+    uint256 amountMinted;
+    uint256 price;
+    uint tokenId;
   }
 
 
     mapping(address => bool) public admins;
-    mapping(address => mapping(uint256 => Card)) public myRepository;
+    mapping(address => mapping(uint256 => Card)) public accountCollection;
     mapping(uint256 => Card) market;
 
     event evento( string );
 
     function getyMyCards(uint256 i) external view returns (Card memory) {
-        return myRepository[msg.sender][i];
+        return accountCollection[msg.sender][i];
     }
 
     function getCardMarket(uint256 i) external view returns (Card memory) {
         return market[i];
     }
     
-    function mint() external  {
-        // _safeMint(address(this), nextTokenId);
+    function mint(string memory name, 
+        string memory urlPic,
+        string memory description,
+        Rareness rareness,
+        string memory nationality,
+        // string memory league,
+        string memory team,
+        uint amountMinted,
+        uint price
+        ) external {
+        require(msg.sender == admin || admins[msg.sender], 'msg sender not allowed!');
         //safeMint is not working, fix it later?
+        // _safeMint(address(this), nextTokenId);
         _mint(address(this), nextTokenId);
 
         Card memory card = Card({
             owner: address(this),
-            name: "Botafogo x Sao Paulo",
-            urlPic: "../card2.png",
-            // date: block.timestamp,
-            description: "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017"
-            // rareness: Rareness.Festive
-            // isForSelling: true,
-            // nationality: nationality,
+            name: name,
+            urlPic: urlPic,
+            date: block.timestamp,
+            description: description,
+            rareness: rareness,
+
+            isForSelling: true,
+            nationality: nationality,
             // league: league,
-            // team: team,
-            // amountMinted: amountMinted,
-            // price: price
+            team: team,
+            amountMinted: amountMinted,
+            price: price,
+            tokenId: nextTokenId
         });
         
-        myRepository[address(this)][nextTokenId] = card;
+        accountCollection[address(this)][nextTokenId] = card;
         market[nextTokenId] = card;
         nextTokenId++;
         emit evento("evento criado");
+     }
+
+     function setIsForSelling(uint i, bool isForSelling) external {
+         accountCollection[msg.sender][i].isForSelling = isForSelling;
+         market[i].isForSelling = isForSelling;
+     }
+
+    // buy any card from market
+     function buyCard(uint cardId) external payable{
+         require(msg.sender != market[cardId].owner, 'you are the owner of this card');
+         require(market[cardId].isForSelling, 'card is not for sale');
+         require(msg.value >= market[cardId].price, 'your payment is not enough');
+    
+        address payable seller_address = payable(address(ownerOf(cardId)));
+        seller_address.transfer(msg.value);
+        //copying card from seller account to new owne
+         accountCollection[msg.sender][cardId] = accountCollection[ownerOf(cardId)][cardId];
+         accountCollection[msg.sender][cardId].isForSelling = false;
+         accountCollection[msg.sender][cardId].owner = msg.sender;
+        //now deleting the card from the previous owner and also from the market
+         delete accountCollection[ownerOf(cardId)][cardId];
+         delete market[cardId];
+        //  add some event of buying here
      }
 
     // function _baseURI() internal pure override returns (string memory) {

@@ -14,10 +14,22 @@ module.exports = async () => {
   const symbol = await cards.symbol();
   console.log(symbol);
 
-  const receipt = await cards.mint();
-  console.log(receipt);
+  // const receipt = await cards.mint();
+  // console.log(receipt);
 
-  // const value = web3.utils.toWei("0.01");
+  const value = web3.utils.toWei("0.01");
+
+  const receipt = await cards.mint(
+    "Botafogo x São Paulo",
+    "../public/card2",
+    "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017",
+    2,
+    "Brazilian",
+    "Sao Paulo",
+    3,
+    value
+  );
+  console.log(receipt);
 
   // console.log(parseInt(supply));
   // await cards.mint();
@@ -25,7 +37,7 @@ module.exports = async () => {
   // await cards
   //   .mint(
   //     "Botafogo x São Paulo", //name
-  //     "../../public/card2", // urlPic
+  //     "../public/card2", // urlPic
   //     // Rareness.festive, //rareness
   //     "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017", //description
   //     "Brazilian", //nationality

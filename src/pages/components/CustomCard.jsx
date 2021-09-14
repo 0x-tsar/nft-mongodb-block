@@ -27,6 +27,7 @@ export const Img = styled.img`
   transition-duration: 5s;
 
   :hover {
+    /* transition-delay: 0.5s; */
     transform: scale(1.1) rotate(1deg);
     cursor: pointer;
   }
@@ -87,6 +88,9 @@ const CustomCard = ({ data }) => {
               // console.log(e.currentTarget.children[0].attributes[0].value);
               setDesc(e.currentTarget.children[0].attributes[0].value);
               // setDesc(e.currentTarget.textContent)
+            }}
+            onClick={(e) => {
+              console.log(item);
             }}
           >
             <LittleWindow ref={ref} value={item.description}>

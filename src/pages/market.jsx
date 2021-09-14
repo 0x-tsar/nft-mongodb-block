@@ -46,16 +46,27 @@ const market = () => {
       for (let i = 0; i < balance; i++) {
         const tokenId = await nft.tokenOfOwnerByIndex(contract_address, i);
         const item = await nft.getCardMarket(parseInt(tokenId));
+        console.log("------");
         console.log(item);
 
+        let date = new Date(Number(item.date) * 1000);
+
         const obj = {
+          amountMinted: parseInt(item.amountMinted),
+          date: date,
+          isForSelling: item.isForSelling,
           description: item.description,
           name: item.name,
+          nationality: item.nationality,
+          owner: item.owner,
+          price: parseInt(item.price),
+          team: item.team,
+          tokenId: item.tokenId,
+          rareness: item.rareness,
           image: item.urlPic,
           owner: item.owner,
         };
 
-        //   // let date = new Date(Number(item.date) * 1000);
         setInfo((info) => [...info, obj]);
       }
     };
