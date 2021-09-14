@@ -19,17 +19,32 @@ module.exports = async () => {
 
   const value = web3.utils.toWei("0.01");
 
-  const receipt = await cards.mint(
-    "Botafogo x São Paulo",
-    "../public/card2",
-    "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017",
+  // const receipt = await cards.mint(
+  //   "Botafogo x São Paulo",
+  //   "../public/card2",
+  //   "Hernanes nos 2 gols na virada que salvou o Tricolor do rebaixamento de 2017",
+  //   2,
+  //   "Brazilian",
+  //   "Sao Paulo",
+  //   3,
+  //   value
+  // );
+
+  cards.mint(
+    "São Paulo x Flamengo",
+    "../public/card1",
+    "Luciano hat-trick contra o Flamengo 2020",
     2,
     "Brazilian",
     "Sao Paulo",
-    3,
+    2,
     value
   );
+
   console.log(receipt);
+
+  // const balanceContract = await web3.eth.getBalance(cards.address);
+  // console.log(`contract ether balance: ${parseInt(balanceContract)}`);
 
   // console.log(parseInt(supply));
   // await cards.mint();

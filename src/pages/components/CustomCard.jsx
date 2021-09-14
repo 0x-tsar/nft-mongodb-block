@@ -36,7 +36,7 @@ export const Img = styled.img`
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
 export const LittleWindow = styled.div`
   width: 200px;
-  /* height: 120px; */
+  height: 300px;
   /* height: 300; */
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -48,9 +48,11 @@ export const LittleWindow = styled.div`
   color: black;
   cursor: default;
   pointer-events: none;
-  padding: 5px;
+  padding: 10px;
   display: none;
 
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
 `;
 
@@ -58,6 +60,14 @@ const CustomCard = ({ data }) => {
   const ref = useRef();
   const [desc, setDesc] = useState("...");
   const [border, setBorder] = useState();
+  const [dados, setDados] = useState({
+    name: "",
+    description: "",
+    nationality: "",
+    team: "",
+    owner: "",
+    price: "",
+  });
 
   useEffect(() => {
     const randomBorder = () => {
@@ -85,16 +95,49 @@ const CustomCard = ({ data }) => {
               ref.current.style.top = `${e.pageY + 10}px`;
             }}
             onMouseEnter={(e) => {
-              // console.log(e.currentTarget.children[0].attributes[0].value);
+              // console.log(e.currentTarget.children[0].children[0].attributes);
+              // console.log(e.currentTarget.children[0].children[0].attributes);
               setDesc(e.currentTarget.children[0].attributes[0].value);
-              // setDesc(e.currentTarget.textContent)
+
+              setDados({
+                name: e.currentTarget.children[0].children[0].attributes.name
+                  .value,
+                description:
+                  e.currentTarget.children[0].children[0].attributes.description
+                    .value,
+                nationality:
+                  e.currentTarget.children[0].children[0].attributes.nationality
+                    .value,
+                team: e.currentTarget.children[0].children[0].attributes.team
+                  .value,
+                owner:
+                  e.currentTarget.children[0].children[0].attributes.owner
+                    .value,
+                price:
+                  e.currentTarget.children[0].children[0].attributes.price
+                    .value,
+                // setDesc(e.currentTarget.textContent)
+              });
             }}
             onClick={(e) => {
-              console.log(item);
+              console.log("buy it");
             }}
           >
             <LittleWindow ref={ref} value={item.description}>
-              {desc}
+              <div
+                name={item.name}
+                description={item.description}
+                nationality={item.nationality}
+                team={item.team}
+                owner={item.owner}
+                price={item.price}
+              ></div>
+              <div>{dados.name}</div>
+              <div>{dados.description}</div>
+              <div>{dados.nationality}</div>
+              <div>{dados.team}</div>
+              <div>{dados.owner}</div>
+              <div>{dados.price}</div>
             </LittleWindow>
             <Img src={item.imageUrl === 1 ? card1.src : card2.src}></Img>
           </ImageHolder>
